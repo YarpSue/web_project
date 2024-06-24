@@ -5,12 +5,25 @@
     <title>模板插值</title>
     <!-- 采坑位置, 有效的vue3的引入链接-->
     <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        #h1 {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
     <div id="Application" style="text-align: center;">
         <!--       模板插值 {{ }} 进行变量插值-->
         <h1>这里是模板的内容: {{count}} 次点击</h1>
         <button v-on:click="clickButton">按钮</button>
+<!--        如果插值的内容是html,这里使用v-html进行渲染-->
+        <h1 v-once>这里是模板的内容: <span  v-html="countHTML"></span></h1>
+<!--        <button v-once:click="clickButton">按钮</button>  v-once 渲染后不能进行修改-->
+<!--        标签属性和变量的绑定-->
+        <input type="text" v-bind:value="count">
+        <h1 v-bind:id="id1">这里是蓝色模板的内容: {{count}} 次点击</h1>
+
+
     </div>
 
     <script>
@@ -19,7 +32,9 @@
             // 定义组件中的数据
             data() {
                 return {
-                    count:0
+                    count:0,
+                    countHTML: "<span style='color:red'>红色</span>",
+                    id1:"h1"
                 }
             },
 
@@ -36,7 +51,7 @@
 
         // 挂载vue实例到id为Application的div上
         app.mount('#Application');
-        
+
     </script>
 
 </body>

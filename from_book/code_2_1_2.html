@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板插值</title>
+    <!-- 采坑位置, 有效的vue3的引入链接-->
+    <script src="https://unpkg.com/vue@3"></script>
+    <!--   标签样式 和 类样式   -->
+    <style>
+        #h1 {
+            color: red;
+        }
+        .h1 {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="Application" style="text-align: center;">
+        <h1 v-if="show">标题</h1>
+        <h1 v-bind:[prop]="name">标题2</h1>
+    </div>
+
+    <script>
+        // 定义一个vue组件 名字叫App
+        const App = {
+            // 定义组件中的数据
+            data() {
+                return {
+                    show: false,
+                    name: 'h1',
+                    prop: 'class'
+                }
+            }
+        }
+
+        // 创建一个vue实例
+        const app = Vue.createApp(App);
+
+        // 挂载vue实例到id为Application的div上
+        app.mount('#Application');
+
+    </script>
+
+</body>
+</html>
